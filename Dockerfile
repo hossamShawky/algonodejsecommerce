@@ -10,6 +10,7 @@ COPY package*.json .
 COPY translations ./translations
 RUN npm install
 RUN npm run build
-
+# Set the PATH to include the local bin
+ENV PATH /app/node_modules/.bin:$PATH
 EXPOSE 80
 CMD ["npm", "run", "start"]
