@@ -3,7 +3,7 @@ WORKDIR /app
 RUN npm install -g npm@9
 COPY package*.json .
 # COPY themes ./themes
-COPY extensions ./extensions
+# COPY extensions ./extensions
 # COPY public ./public
 # COPY media ./media
 # COPY config ./config
