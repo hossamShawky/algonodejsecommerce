@@ -9,7 +9,7 @@ COPY  packages .
 # COPY media ./media
 # COPY config ./config
 COPY translations ./translations
-RUN npm install @evershop/evershop
+RUN npm install @evershop/evershop && install @evershop/postgres-query-builder
 RUN npm install
 RUN pwd && ls  -l /app/ 
 RUN npm run build 
