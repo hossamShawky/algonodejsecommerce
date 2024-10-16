@@ -4,7 +4,8 @@ RUN npm install -g npm@9
 COPY package*.json .
 COPY translations ./translations
 
-RUN mkdir packages && cd  packages
+RUN mkdir packages 
+COPY  packages/ packages/
 # COPY themes ./themes
 # COPY extensions ./extensions
 # COPY public ./public
