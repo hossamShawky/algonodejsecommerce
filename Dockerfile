@@ -11,7 +11,7 @@ COPY  packages .
 COPY translations ./translations
 RUN npm install @evershop/evershop
 RUN npm install
-RUN pwd && ls  -l /app/packages
+RUN pwd && ls  -l /app/ 
 RUN npm run build 
 # Set the PATH to include the local bin
 # ENV PATH /app/node_modules/.bin:$PATH
