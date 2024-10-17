@@ -14,10 +14,10 @@ COPY  packages/ packages/
 RUN npm install @evershop/evershop
 #&& install @evershop/postgres-query-builder
 RUN npm install
-RUN pwd && ls  -l /app/ 
-RUN cd ..
+RUN pwd && ls  -l /app/  && cd ..
 RUN npm run build 
-# Set the PATH to include the local bin
-# ENV PATH /app/node_modules/.bin:$PATH
+# Set environment variables
+ENV NODE_ENV=production
+ENV SUPPRESS_NO_CONFIG_WARNING=true
 EXPOSE 80
 CMD ["npm", "run", "start"]
