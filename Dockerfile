@@ -17,7 +17,7 @@ RUN npm install
 RUN pwd && ls  -l /app/  && cd ..
 RUN npm run build 
 # Set environment variables
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 ENV SUPPRESS_NO_CONFIG_WARNING=true
 EXPOSE 80
 CMD ["npm", "run", "start"]
