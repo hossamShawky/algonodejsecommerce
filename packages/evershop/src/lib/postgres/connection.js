@@ -25,7 +25,7 @@ switch (sslMode) {
   case 'verify-ca':
   case 'verify-full': {
     const ssl = {
-      rejectUnauthorized: true
+      rejectUnauthorized: false
     };
     const ca = process.env.DB_SSLROOTCERT;
     if (ca) {
