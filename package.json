@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+},
   "name": "evershop",
   "version": "1.0.0-beta",
   "description": "A shopping cart platform with Express, React and Postgres",
