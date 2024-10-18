@@ -12,6 +12,9 @@ const connectionSetting = {
   // database: process.env.DB_NAME || getConfig('system.database.database'),
   // max: 20
   connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // Disable SSL certificate verification
+  },
 };
 
 // Support SSL
