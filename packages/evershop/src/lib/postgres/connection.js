@@ -31,20 +31,20 @@ switch (sslMode) {
     const ssl = {
       rejectUnauthorized: false
     };
-    const ca = process.env.DB_SSLROOTCERT;
-    if (ca) {
-      ssl.ca = fs.readFileSync(ca).toString();
-    }
-    const cert = process.env.DB_SSLCERT;
-    if (cert) {
-      ssl.cert = fs.readFileSync(cert).toString();
-    }
-    const key = process.env.DB_SSLKEY;
-    if (key) {
-      ssl.key = fs.readFileSync(key).toString();
-    }
-    connectionSetting.ssl = ssl;
-    break;
+    // const ca = process.env.DB_SSLROOTCERT;
+    // if (ca) {
+    //   ssl.ca = fs.readFileSync(ca).toString();
+    // }
+    // const cert = process.env.DB_SSLCERT;
+    // if (cert) {
+    //   ssl.cert = fs.readFileSync(cert).toString();
+    // }
+    // const key = process.env.DB_SSLKEY;
+    // if (key) {
+    //   ssl.key = fs.readFileSync(key).toString();
+    // }
+    // connectionSetting.ssl = ssl;
+    // break;
   }
   case 'no-verify': {
     connectionSetting.ssl = {
