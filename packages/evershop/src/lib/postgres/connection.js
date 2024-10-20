@@ -8,54 +8,59 @@ const connectionSetting = {
  
   user: "doadmin",
   host: "evershop-do-user-8222163-0.f.db.ondigitalocean.com",
-  port: 25060,
-
+  port: process.env.DB_PORT,
 
   password: process.env.DB_PASSWORD || getConfig('system.database.password'),
   database: process.env.DB_NAME || getConfig('system.database.database'),
-  max: 20
+  max: 20,
+
+  ssl: {
+    rejectUnauthorized: false, // Set this to true for production
+   // ca: ca, // Use the decoded CA certificate
+  },
+
 };
 console.log(process.env.DB_NAME )
 // Support SSL
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
-switch (sslMode) {
-  case 'disable': {
-    connectionSetting.ssl = false;
-    break;
-  }
-  case 'require':
-  case 'prefer':
-  case 'verify-ca':
-  case 'verify-full': {
-    const ssl = {
-      rejectUnauthorized: true
-    };
-    const ca = process.env.DB_SSLROOTCERT;
-    if (ca) {
-      ssl.ca = fs.readFileSync(ca).toString();
-    }
-    const cert = process.env.DB_SSLCERT;
-    if (cert) {
-      ssl.cert = fs.readFileSync(cert).toString();
-    }
-    const key = process.env.DB_SSLKEY;
-    if (key) {
-      ssl.key = fs.readFileSync(key).toString();
-    }
-    connectionSetting.ssl = ssl;
-    break;
-  }
-  case 'no-verify': {
-    connectionSetting.ssl = {
-      rejectUnauthorized: false
-    };
-    break;
-  }
-  default: {
-    connectionSetting.ssl = false;
-    break;
-  }
-}
+// switch (sslMode) {
+//   case 'disable': {
+//     connectionSetting.ssl = false;
+//     break;
+//   }
+//   case 'require':
+//   case 'prefer':
+//   case 'verify-ca':
+//   case 'verify-full': {
+//     const ssl = {
+//       rejectUnauthorized: true
+//     };
+//     const ca = process.env.DB_SSLROOTCERT;
+//     if (ca) {
+//       ssl.ca = fs.readFileSync(ca).toString();
+//     }
+//     const cert = process.env.DB_SSLCERT;
+//     if (cert) {
+//       ssl.cert = fs.readFileSync(cert).toString();
+//     }
+//     const key = process.env.DB_SSLKEY;
+//     if (key) {
+//       ssl.key = fs.readFileSync(key).toString();
+//     }
+//     connectionSetting.ssl = ssl;
+//     break;
+//   }
+//   case 'no-verify': {
+//     connectionSetting.ssl = {
+//       rejectUnauthorized: false
+//     };
+//     break;
+//   }
+//   default: {
+//     connectionSetting.ssl = false;
+//     break;
+//   }
+// }
 
 const pool = new Pool(connectionSetting);
 // Set the timezone
