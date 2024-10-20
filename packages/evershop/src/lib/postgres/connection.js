@@ -15,7 +15,7 @@ const connectionSetting = {
   database: process.env.DB_NAME || getConfig('system.database.database'),
   max: 20
 };
-
+console.log(database: process.env.DB_NAME )
 // Support SSL
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
 switch (sslMode) {
