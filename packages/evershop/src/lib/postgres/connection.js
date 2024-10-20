@@ -7,7 +7,8 @@ const { getConfig } = require('../util/getConfig');
 const connectionSetting = {
  
   user: process.env.DB_USER , 
-  host: "evershop-do-user-8222163-0.f.db.ondigitalocean.com",
+  // host: "evershop-do-user-8222163-0.f.db.ondigitalocean.com",
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT,
 
   password: process.env.DB_PASSWORD || getConfig('system.database.password'),
@@ -20,7 +21,7 @@ const connectionSetting = {
   },
 
 };
-console.log(process.env.DB_USER )
+console.log(process.env.DB_HOST )
 // Support SSL
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
 // switch (sslMode) {
