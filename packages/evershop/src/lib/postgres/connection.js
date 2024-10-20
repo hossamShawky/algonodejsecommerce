@@ -5,14 +5,14 @@ const { getConfig } = require('../util/getConfig');
 
 // Use env for the database connection, maintain the backward compatibility
 const connectionSetting = {
-  host: process.env.DB_HOST || getConfig('system.database.host'),
-  port: process.env.DB_PORT || getConfig('system.database.port'),
-  user: process.env.DB_USER || getConfig('system.database.user'),
+  user: "doadmin",
+  host: "evershop-do-user-8222163-0.f.db.ondigitalocean.com",
+  database:process.env.DB_NAME,
+  port: process.env.DB_PORT,
   password: process.env.DB_PASSWORD || getConfig('system.database.password'),
-  database: process.env.DB_NAME || getConfig('system.database.database'),
-  max: 20
+   max: 20
 };
-
+console.log(process.env.DB_PORT);
 // Support SSL
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
 switch (sslMode) {
