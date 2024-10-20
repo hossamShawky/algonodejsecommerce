@@ -83,9 +83,9 @@ const { getConfig } = require('../util/getConfig');
 
 const connectionSetting = {
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  // ssl: {
+  //   rejectUnauthorized: false,
+  // },
 };
 
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
@@ -101,19 +101,19 @@ switch (sslMode) {
       rejectUnauthorized: false,
     };
     // Uncomment and modify if needed
-    // const ca = process.env.DB_SSLROOTCERT;
-    // if (ca) {
-    //   ssl.ca = fs.readFileSync(ca).toString();
-    // }
-    // const cert = process.env.DB_SSLCERT;
-    // if (cert) {
-    //   ssl.cert = fs.readFileSync(cert).toString();
-    // }
-    // const key = process.env.DB_SSLKEY;
-    // if (key) {
-    //   ssl.key = fs.readFileSync(key).toString();
-    // }
-    // connectionSetting.ssl = ssl;
+    const ca = process.env.DB_SSLROOTCERT;
+    if (ca) {
+      ssl.ca = fs.readFileSync(ca).toString();
+    }
+    const cert = process.env.DB_SSLCERT;
+    if (cert) {
+      ssl.cert = fs.readFileSync(cert).toString();
+    }
+    const key = process.env.DB_SSLKEY;
+    if (key) {
+      ssl.key = fs.readFileSync(key).toString();
+    }
+    connectionSetting.ssl = ssl;
     break;
   case 'no-verify':
     connectionSetting.ssl = {
