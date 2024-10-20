@@ -6,7 +6,7 @@ const { getConfig } = require('../util/getConfig');
 // Use env for the database connection, maintain the backward compatibility
 const connectionSetting = {
  
-  user: "doadmin",
+  user: process.env.DB_USER , 
   host: "evershop-do-user-8222163-0.f.db.ondigitalocean.com",
   port: process.env.DB_PORT,
 
@@ -20,7 +20,7 @@ const connectionSetting = {
   },
 
 };
-console.log(process.env.DB_NAME )
+console.log(process.env.DB_USER )
 // Support SSL
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
 // switch (sslMode) {
