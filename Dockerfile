@@ -14,7 +14,7 @@ COPY  packages/ packages/
 RUN npm install @evershop/evershop
 #&& install @evershop/postgres-query-builder
 RUN npm install
-RUN pwd && ls  -l /app/  && cd ..
+# RUN pwd && ls  -l /app/  && cd ..
 RUN npm run build 
 # Set environment variables
 ENV NODE_ENV=development
