@@ -80,54 +80,54 @@
 const { Pool } = require('pg');
 const fs = require('fs');
 const { getConfig } = require('../util/getConfig');
-const ca = Buffer.from(process.env.DB_SSLROOTCERT, 'base64').toString('utf8');
+// const ca = Buffer.from(process.env.DB_SSLROOTCERT, 'base64').toString('utf8');
 
 const connectionSetting = {
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
-    ca: ca,
+    // ca: ca,
   },
 };
 
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
-// switch (sslMode) {
-//   case 'disable':
-//     connectionSetting.ssl = false;
-//     break;
-//   case 'require':
-//   case 'prefer':
-//   case 'verify-ca':
-//   case 'verify-full':
-//     const ssl = {
-//       rejectUnauthorized: false,
-//     };
-//     // Uncomment and modify if needed
-//     // const ca = process.env.DB_SSLROOTCERT;
-//     const ca = Buffer.from(process.env.DB_SSLROOTCERT, 'base64').toString('utf8');
+switch (sslMode) {
+  case 'disable':
+    connectionSetting.ssl = false;
+    break;
+  case 'require':
+  case 'prefer':
+  case 'verify-ca':
+  case 'verify-full':
+    const ssl = {
+      rejectUnauthorized: false,
+    };
+    // Uncomment and modify if needed
+    // const ca = process.env.DB_SSLROOTCERT;
+const ca = Buffer.from(process.env.DB_SSLROOTCERT, 'base64').toString('utf8');
 
-//     if (ca) {
-//       ssl.ca = fs.readFileSync(ca).toString();
-//     }
-//     const cert = process.env.DB_SSLCERT;
-//     if (cert) {
-//       ssl.cert = fs.readFileSync(cert).toString();
-//     }
-//     const key = process.env.DB_SSLKEY;
-//     if (key) {
-//       ssl.key = fs.readFileSync(key).toString();
-//     }
-//     connectionSetting.ssl = ssl;
-//     break;
-//   case 'no-verify':
-//     connectionSetting.ssl = {
-//       rejectUnauthorized: false,
-//     };
-//     break;
-//   default:
-//     connectionSetting.ssl = false;
-//     break;
-// }
+    if (ca) {
+      ssl.ca = fs.readFileSync(ca).toString();
+    }
+    const cert = process.env.DB_SSLCERT;
+    if (cert) {
+      ssl.cert = fs.readFileSync(cert).toString();
+    }
+    const key = process.env.DB_SSLKEY;
+    if (key) {
+      ssl.key = fs.readFileSync(key).toString();
+    }
+    connectionSetting.ssl = ssl;
+    break;
+  case 'no-verify':
+    connectionSetting.ssl = {
+      rejectUnauthorized: false,
+    };
+    break;
+  default:
+    connectionSetting.ssl = false;
+    break;
+}
 
 const pool = new Pool(connectionSetting);
 
