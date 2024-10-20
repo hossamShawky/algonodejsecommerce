@@ -90,7 +90,7 @@ const connectionSetting = {
   password: process.env.DB_PASSWORD  ,
   database: process.env.DB_NAME ,
   ssl: {
-    rejectUnauthorized: false,
+    rejectUnauthorized: true,
     // ca: ca,
   },
 };
