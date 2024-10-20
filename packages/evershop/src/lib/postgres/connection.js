@@ -89,10 +89,10 @@ const connectionSetting = {
   user: process.env.DB_USER ,
   password: process.env.DB_PASSWORD  ,
   database: process.env.DB_NAME ,
-  ssl: {
-    rejectUnauthorized: true,
-    // ca: ca,
-  },
+  // ssl: {
+  //   rejectUnauthorized: true,
+  //   // ca: ca,
+  // },
 };
 
 const sslMode = process.env.DB_SSLMODE || getConfig('system.database.ssl_mode');
